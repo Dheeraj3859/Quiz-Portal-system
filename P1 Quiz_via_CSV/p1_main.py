@@ -5,7 +5,7 @@ import pandas as pd
 import multiprocessing
 import threading
 import time
-import keyboard 
+import keyboard
 from tkinter import *
 def hash_password(password):
 	encoded_password = hashlib.sha256(password.encode())
@@ -118,7 +118,7 @@ def fun_input():
 	if len(user_response)!=0 and user_response!='-1':
 		user_choices[q_index]=user_response
 		
-	next_flag=input(("enter the question number which you want to go or press n to to to next question or type submit to submit the quiz\n"))
+	next_flag=input(("enter the question number which you want to go or press n to go to next question or type submit to submit the quiz\n"))
 	if next_flag=='submit':
 		submit=1
 		return
@@ -141,7 +141,6 @@ def check():
 	if flag==1:
 		return True
 	return False
-
 
 
 def enter_into_database():
@@ -177,11 +176,12 @@ def quizwise_responses():
 		if m_c==-1:
 			m_c=0
 		correct_str=""
+		fl=0
 		if int(user_choices[i])==int(correct_answers[i]) and int(user_choices[i])!=-1:
 			correct_str="Correct Choices"
 		elif (int(user_choices[i])!=int(correct_answers[i]) and int(user_choices[i])!=-1) or (int(user_choices[i])==-1 and v['compulsory']=='y') :	
 			correct_str="Wrong Choices"
-		elif int(user_choices[i])=='-1' and v['compulsory']=='n':
+		elif int(user_choices[i])==-1:
 			correct_str="Unattempted"
 		df1 = pd.DataFrame([[v[l[0]],v[l[1]],v[l[2]],v[l[3]],v[l[4]],v[l[5]],v[l[6]],v[l[7]],v[l[8]],v[l[9]],m_c,to,correct_str]])
 		df1.to_csv(path,mode='a+',index=False,header=False)
